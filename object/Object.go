@@ -7,19 +7,19 @@ import (
 )
 
 type HeartBeat struct {
-	MdId          int       `toml:"mdId"`
-	MdName        string    `toml:"mdName"`
-	ClientVersion string    `toml:"clientName"`
-	HeartBeat     time.Time `toml:"heartBeat"`
-	IsOffLine     bool      `toml:"isOffLine"`
+	MdId          int       `json:"mdId"`
+	MdName        string    `json:"mdName"`
+	ClientVersion string    `json:"clientName"`
+	HeartBeat     time.Time `json:"heartBeat"`
+	IsOffLine     bool      `json:"isOffLine"`
 }
 
 type HeartBeatStr struct {
-	MdId          string `toml:"mdId"`
-	MdName        string `toml:"mdName"`
-	ClientVersion string `toml:"clientName"`
-	HeartBeat     string `toml:"heartBeat"`
-	IsOffLine     string `toml:"isOffLine"`
+	MdId          string `json:"mdId"`
+	MdName        string `json:"mdName"`
+	ClientVersion string `json:"clientName"`
+	HeartBeat     string `json:"heartBeat"`
+	IsOffLine     string `json:"isOffLine"`
 }
 
 func NewHeartBeatStr(d *HeartBeat) *HeartBeatStr {
