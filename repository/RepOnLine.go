@@ -50,6 +50,7 @@ func (r *repOnLine) GetHeartBeatData() ([]*object.HeartBeat, error) {
 	var mdId int
 	var mdName, clientVersion string
 	var heartBeat time.Time
+	offTimeLine := time.Now().Add(-goToolCommon.GetDurationBySecond(global.SysConfig.Web.OffLine))
 	for rows.Next() {
 		err := rows.Scan(&mdId, &mdName, &clientVersion, &heartBeat)
 		if err != nil {
@@ -60,7 +61,7 @@ func (r *repOnLine) GetHeartBeatData() ([]*object.HeartBeat, error) {
 			MdName:        mdName,
 			ClientVersion: clientVersion,
 			HeartBeat:     heartBeat,
-			IsOffLine:     heartBeat.Before(time.Now().Add(-goToolCommon.GetDurationBySecond(global.SysConfig.Web.OffLine))),
+			IsOffLine:     goToolCommon.GetDateTimeStr(offTimeLine) > goToolCommon.GetDateTimeStr(heartBeat),
 		})
 	}
 	if rows.Err() != nil {
